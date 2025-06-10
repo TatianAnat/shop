@@ -10,11 +10,13 @@ public class App {
         Product apple = new Product("Яблоко", 50);
         Product bread = new Product("Хлеб", 45);
         Product milk = new Product("Молоко", 100);
+        Product egg= new Product("Яйцо", 80);
 
 
         productBasket.addProduct(apple);
         productBasket.addProduct(bread);
         productBasket.addProduct(milk);
+        productBasket.addProduct(egg);
 
         productBasket.printProductBasket();
 
