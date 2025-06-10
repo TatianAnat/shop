@@ -31,11 +31,11 @@ public class App {
         productBasket2.addProduct(loaf);
         productBasket2.addProduct(cheese);
 //печатаем содкржимое Корзины № 1 и общую сумму
-        System.out.println("Корзина 1");
+        System.out.println("Корзина № 1");
         productBasket.printProductBasket();
 //печатаем содкржимое Корзины № 2 и общую сумму
         System.out.println();
-        System.out.println("Корзина 2");
+        System.out.println("Корзина № 2");
         productBasket2.printProductBasket();
 
         System.out.println();
