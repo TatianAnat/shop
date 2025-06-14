@@ -37,8 +37,8 @@ public class ProductBasket {
 
     public int getTotalPrice() {
         int total = 0;
-        for (int i = 0; i < size; i++) {
-            total = total + products[i].getPrice();
+        for (Product product : products) {
+            total += product.getPrice();
         }
         return total;
     }
@@ -50,23 +50,21 @@ public class ProductBasket {
      */
 
     public void printProductBasket() {
-        if (size == 0) {
-            System.out.println("в корзине пусто");
-            return;
-        }
+
         for (Product product : products) {
             if (product != null) {
                 System.out.println(product);
+            } else if (size == 0) {
+                System.out.println("в корзине пусто");
+                return;
             }
-
         }
         System.out.println("Итого: " + getTotalPrice());
     }
 
     /**
      * Метод проверки продукта в корзине по имени
-     *
-     * @param products - список продуктов
+     * products - список продуктов
      * @param name     - имя продукта
      * @return - возвращает значение true (истины), если название проверяемого продукта совпадает, с тем, что есть в корзине, иначе false
      * equalsIgnoreCase - применяется для игнорирования регистра

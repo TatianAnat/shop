@@ -30,6 +30,8 @@ public class App {
         productBasket.addProduct(oil);
         productBasket.addProduct(pear);
 
+
+
 /**
  * Печатаем содержимое Корзины № 1 и общую сумму
  */
