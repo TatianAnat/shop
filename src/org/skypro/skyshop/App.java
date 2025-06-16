@@ -19,6 +19,8 @@ public class App {
         Product oil = new Product("Масло", 30);
         Product pear = new Product("Груша", 25);
 
+        Product cheese = new Product("Сыр", 90);
+
         /**
          * Добавляем в Корзину № 1
          */
@@ -29,6 +31,8 @@ public class App {
         productBasket.addProduct(egg);
         productBasket.addProduct(oil);
         productBasket.addProduct(pear);
+
+        productBasket2.addProduct(cheese);
 
 
 /**
@@ -44,6 +48,7 @@ public class App {
         System.out.println("Корзина № 2");
         productBasket2.printProductBasket();
 
+
         System.out.println();
         System.out.println(("Есть ли хлеб в корзине? " + productBasket.hasProduct("хлеб")));
         System.out.println(("Есть ли мороженое в корзине? " + productBasket.hasProduct("мороженое")));
@@ -53,6 +58,5 @@ public class App {
  */
         productBasket.clear();
         productBasket.printProductBasket();
-
     }
 }
