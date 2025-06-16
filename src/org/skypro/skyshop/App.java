@@ -2,6 +2,7 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 import java.util.List;
 
@@ -12,14 +13,14 @@ public class App {
 /**
  * заполняем Корзину № 1
  */
-        Product apple = new Product("Яблоко", 50);
-        Product bread = new Product("Хлеб", 45);
-        Product milk = new Product("Молоко", 100);
-        Product egg = new Product("Яйцо", 80);
-        Product oil = new Product("Масло", 30);
-        Product pear = new Product("Груша", 25);
+        SimpleProduct apple = new SimpleProduct("Яблоко", 50);
+        SimpleProduct bread = new SimpleProduct("Хлеб", 45);
+        SimpleProduct milk = new SimpleProduct("Молоко", 100);
+        SimpleProduct egg = new SimpleProduct("Яйцо", 80);
+        SimpleProduct oil = new SimpleProduct("Масло", 30);
+        SimpleProduct pear = new SimpleProduct("Груша", 25);
 
-        Product cheese = new Product("Сыр", 90);
+        SimpleProduct cheese = new SimpleProduct("Сыр", 90);
 
         /**
          * Добавляем в Корзину № 1
