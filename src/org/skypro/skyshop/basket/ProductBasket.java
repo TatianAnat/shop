@@ -56,11 +56,14 @@ public class ProductBasket {
         for (Product product : products) {
             if (product != null) {
                 System.out.println(product);
-            } else if (size == 0) {
+            }  else if (size == 0) {
                 System.out.println("в корзине пусто");
                 return;
-            } else if (product.isSpecial()) {
-                specialCount ++;
+            }
+                    }
+        for (Product product : products) {
+            if (product.isSpecial()) {
+                specialCount++;
             }
         }
         System.out.println("Итого: " + getTotalPrice());
