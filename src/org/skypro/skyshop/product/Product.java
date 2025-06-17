@@ -14,12 +14,9 @@ public abstract class Product {
 
     public abstract int getPrice();
 
-   // @Override
-   // public String toString() {
-   //     return "Product{ " + name + ": " + " стоимость со скидкой = "  + getPrice() +'}';
-   // }
 
     public boolean isSpecial() {
-        return true;
+        return false;
     }
+
 }
