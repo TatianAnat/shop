@@ -1,6 +1,8 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
@@ -15,9 +17,9 @@ public class App {
  */
         SimpleProduct apple = new SimpleProduct("Яблоко", 50);
         SimpleProduct bread = new SimpleProduct("Хлеб", 45);
-        SimpleProduct milk = new SimpleProduct("Молоко", 100);
+        DiscountedProduct milk = new DiscountedProduct("Молоко", 100,10);
         SimpleProduct egg = new SimpleProduct("Яйцо", 80);
-        SimpleProduct oil = new SimpleProduct("Масло", 30);
+        FixPriceProduct oil = new FixPriceProduct("Масло");
         SimpleProduct pear = new SimpleProduct("Груша", 25);
 
         SimpleProduct cheese = new SimpleProduct("Сыр", 90);

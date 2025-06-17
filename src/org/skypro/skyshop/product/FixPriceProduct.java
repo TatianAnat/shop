@@ -19,4 +19,18 @@ public class FixPriceProduct extends Product{
     public int getPrice() {
         return FIXED_PRICE;
     }
+
+    @Override
+    public boolean isSpecial() {
+        return  true;
+    }
+
+    /**
+     * переопределяем данный метод для каждого класса
+     * @return возвращает нужный вывод
+     */
+    @Override
+    public String toString() {
+        return  getName() + ": Фиксированная цена " + FIXED_PRICE;
+    }
 }

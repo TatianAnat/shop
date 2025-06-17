@@ -12,7 +12,7 @@ public class DiscountedProduct extends Product {
 
     @Override
     public int getPrice() {
-        return basePrice * (1 - discount / 100);
+        return basePrice * (100 - discount) / 100;
     }
 
     public int getDiscount() {
@@ -21,5 +21,19 @@ public class DiscountedProduct extends Product {
 
     public int getBasePrice() {
         return basePrice;
+    }
+
+    /**
+     * определяет товары со скидкой или фиксированной ценой
+     * @return
+     */
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + ": " + getPrice() + " (" + discount + "%)";
     }
 }
