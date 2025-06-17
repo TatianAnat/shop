@@ -40,7 +40,6 @@ public class ProductBasket {
             if (product != null) {
                 total += product.getPrice();
             }
-
         }
         return total;
     }
@@ -61,12 +60,12 @@ public class ProductBasket {
             if (product != null) {
                 System.out.println(product);
             }
+        }
+        for (Product product : products) {
+            if (product != null && product.isSpecial()) {
+                specialCount++;
             }
-            for (Product product : products) {
-                if (product != null && product.isSpecial()) {
-                    specialCount++;
-                }
-            }
+        }
 
         System.out.println("Итого: " + getTotalPrice());
         System.out.println("Специальных товаров: " + specialCount);

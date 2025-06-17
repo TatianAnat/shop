@@ -25,6 +25,7 @@ public class DiscountedProduct extends Product {
 
     /**
      * определяет товары со скидкой или фиксированной ценой
+     *
      * @return
      */
     @Override

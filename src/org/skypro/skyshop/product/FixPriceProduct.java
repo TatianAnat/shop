@@ -1,6 +1,6 @@
 package org.skypro.skyshop.product;
 
-public class FixPriceProduct extends Product{
+public class FixPriceProduct extends Product {
     /**
      * Приватная константа FIXED_PRICE для фиксированной цены
      */
@@ -22,15 +22,16 @@ public class FixPriceProduct extends Product{
 
     @Override
     public boolean isSpecial() {
-        return  true;
+        return true;
     }
 
     /**
      * переопределяем данный метод для каждого класса
+     *
      * @return возвращает нужный вывод
      */
     @Override
     public String toString() {
-        return  getName() + ": Фиксированная цена " + FIXED_PRICE;
+        return getName() + ": Фиксированная цена " + FIXED_PRICE;
     }
 }

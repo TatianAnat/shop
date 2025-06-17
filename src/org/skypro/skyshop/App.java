@@ -17,12 +17,13 @@ public class App {
  */
         SimpleProduct apple = new SimpleProduct("Яблоко", 50);
         SimpleProduct bread = new SimpleProduct("Хлеб", 45);
-        DiscountedProduct milk = new DiscountedProduct("Молоко", 100,10);
+        DiscountedProduct milk = new DiscountedProduct("Молоко", 100, 10);
         SimpleProduct egg = new SimpleProduct("Яйцо", 80);
         FixPriceProduct oil = new FixPriceProduct("Масло");
         SimpleProduct pear = new SimpleProduct("Груша", 25);
 
         SimpleProduct cheese = new SimpleProduct("Сыр", 90);
+        DiscountedProduct washingPowder = new DiscountedProduct("Стиральный порошок",270,15);
 
         /**
          * Добавляем в Корзину № 1
@@ -36,7 +37,7 @@ public class App {
         productBasket.addProduct(pear);
 
         productBasket2.addProduct(cheese);
-
+        productBasket2.addProduct(washingPowder);
 
 /**
  * Печатаем содержимое Корзины № 1 и общую сумму
@@ -60,6 +61,6 @@ public class App {
  * очищаем Корзину № 1
  */
         productBasket.clear();
-        productBasket.printProductBasket();
+        //productBasket.printProductBasket();
     }
 }
