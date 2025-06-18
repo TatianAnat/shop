@@ -23,7 +23,7 @@ public class App {
         SimpleProduct pear = new SimpleProduct("Груша", 25);
 
         SimpleProduct cheese = new SimpleProduct("Сыр", 90);
-        DiscountedProduct washingPowder = new DiscountedProduct("Стиральный порошок",270,15);
+        DiscountedProduct washingPowder = new DiscountedProduct("Стиральный порошок", 270, 15);
 
         /**
          * Добавляем в Корзину № 1
@@ -61,6 +61,5 @@ public class App {
  * очищаем Корзину № 1
  */
         productBasket.clear();
-        //productBasket.printProductBasket();
     }
 }

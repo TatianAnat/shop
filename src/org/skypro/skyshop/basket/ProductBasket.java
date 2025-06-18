@@ -60,8 +60,6 @@ public class ProductBasket {
             if (product != null) {
                 System.out.println(product);
             }
-        }
-        for (Product product : products) {
             if (product != null && product.isSpecial()) {
                 specialCount++;
             }
