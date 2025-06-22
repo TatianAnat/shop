@@ -2,6 +2,9 @@ package org.skypro.skyshop.articles;
 
 import org.skypro.skyshop.search.Searchable;
 
+/**
+ * немодифицируемый (final) класс Article, т.е. данный класс нельзя наследовать
+ */
 public final class Article implements Searchable {
 
     private final String title;
@@ -16,16 +19,16 @@ public final class Article implements Searchable {
         this.text = text;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
-    public String getText(){
+    public String getText() {
         return text;
     }
 
     @Override
-    public String getSearchTerm(){
+    public String getSearchTerm() {
         return this.toString();
     }
 
@@ -35,7 +38,7 @@ public final class Article implements Searchable {
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return title;
     }
 

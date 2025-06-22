@@ -16,7 +16,7 @@ public class App {
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket(5); //корзина1 на 5 продуктов
         ProductBasket productBasket2 = new ProductBasket(5); //корзина2 на 5 продуктов
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine(10); //создаём поиск с размером 10
 /**
  * заполняем Корзину № 1
  */
@@ -47,6 +47,8 @@ public class App {
         searchEngine.add(apple);
         searchEngine.add(bread);
         searchEngine.add(milk);
+        searchEngine.add(pear);
+        searchEngine.add(cheese);
 
 /**
  * Печатаем содержимое Корзины № 1 и общую сумму
@@ -67,15 +69,19 @@ public class App {
         System.out.println(("Есть ли мороженое в корзине? " + productBasket.hasProduct("мороженое")));
         System.out.println();
         /**
-         * Создаём и добавляем статьи
+         * Создаём и добавляем название и текст статьи
          */
         Article article1 = new Article("Яблоки", "Яблоки отличного качества, выращенные в садах Приволжья");
         Article article2 = new Article("Хлеб ЗОЖ", "Низкокалорийный хлеб из пророщенной пшеницы. Рекомендован людям, которые ведут здоровый образ жизни.");
         Article article3 = new Article("Польза молока", "Оно способствует укреплению костей и зубов, улучшает работу иммунной системы и пищеварения.");
+        Article article4 = new Article("Варенье из груши", "Варенье из груш содержит органические кислоты ");
+        Article article5 = new Article("Лучший сыр", "Лучшим сыром России 2021 назван сыр Грюйер Патрис Норман от Филимоново Раздолье из Ярославской области ");
 
         searchEngine.add(article1);
         searchEngine.add(article2);
         searchEngine.add(article3);
+        searchEngine.add(article4);
+        searchEngine.add(article5);
         /**
          * Поиск по запросам
          */
@@ -84,6 +90,8 @@ public class App {
         searchAndPrint(searchEngine, "Молоко");
         searchAndPrint(searchEngine, "ЗОЖ");
         searchAndPrint(searchEngine, "принтер");
+        searchAndPrint(searchEngine, "сыр");
+        searchAndPrint(searchEngine, "Варенье");
 
 /**
  * очищаем Корзину № 1

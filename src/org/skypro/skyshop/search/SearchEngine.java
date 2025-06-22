@@ -18,6 +18,12 @@ public class SearchEngine {
         items[count++] = item;
     }
 
+    /**
+     * Для строк, contains() проверяет, является ли заданная подстрока частью данной строки.
+     *
+     * @param query подстрока
+     * @return может содержать null-элементы, если найдено меньше 5
+     */
     public Searchable[] search(String query) {
         Searchable[] results = new Searchable[5];
         int found = 0;
