@@ -5,7 +5,7 @@ import java.util.List;
 public class SearchEngine {
     public Searchable findBestMatch(String search, List<? extends Searchable> items) throws BestResultNotFound {
         if (search == null || search.isEmpty() || items == null || items.isEmpty()) {
-            return null;
+            throw new BestResultNotFound(search);
         }
 
         Searchable bestMatch = null;
@@ -18,6 +18,10 @@ public class SearchEngine {
                 maxCount = count;
                 bestMatch = item;
             }
+        }
+
+        if (bestMatch == null || maxCount == 0) {
+            throw new BestResultNotFound(search);
         }
 
         return bestMatch;
