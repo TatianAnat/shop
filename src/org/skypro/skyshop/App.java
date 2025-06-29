@@ -47,19 +47,23 @@ public class App {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
+/**
+ * Создаём сценарий, где объект будет найден
+ */
         try {
             String query1 = "Принтер";
             Searchable result1 = searchEngine.findBestMatch(query1,articles);
-            System.out.println("Найден подходящий объект для запроса " + query1 + ": " + result1);
+            System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
-
+        /**
+         * Создаём сценарий, где объект будет не найден. Выбрасывается исключение
+         */
         try {
             String query2 = "Колонки";
             Searchable result2 = searchEngine.findBestMatch(query2,articles);
-            System.out.println("Найден подходящий объект для запроса " + query2 + ": " + result2);
+            System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
         }

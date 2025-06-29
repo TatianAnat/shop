@@ -3,6 +3,13 @@ package org.skypro.skyshop.exceptions;
 import java.util.List;
 
 public class SearchEngine {
+    /**
+     * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
+     * @param search - поисковая строка
+     * @param items - список объектов Searchable
+     * @return - возвращает наиболее подходящий объект Searchable
+     * @throws BestResultNotFound - Метод выбрасывает проверяемое исключение собственного типа, если объект не найден
+     */
     public Searchable findBestMatch(String search, List<? extends Searchable> items) throws BestResultNotFound {
         if (search == null || search.isEmpty() || items == null || items.isEmpty()) {
             throw new BestResultNotFound(search);
@@ -29,6 +36,12 @@ public class SearchEngine {
         return bestMatch;
     }
 
+    /**
+     * метод подсчитывает количество неперекрывающихся вхождений подстроки.
+     * @param text
+     * @param subLower -  преобразования строки в нижний регистр.
+     * @return
+     */
     private int countOccurrencesIgnoreCase(String text, String subLower) {
         if (text == null || subLower == null || subLower.isEmpty()) {
             return 0;

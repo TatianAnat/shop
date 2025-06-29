@@ -5,6 +5,9 @@ public class Product {
     int price;
 
     public Product(String name, int price) {
+        /**
+         * Метод isBlank() используется для проверки, является ли строка пустой или нет. Пустая строка или строка, содержащая только пробелы, считается пустой.
+         */
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Название продукта не может быть пустым, состоять только из пробелов или быть null.");
         }
