@@ -8,12 +8,14 @@ public class SearchEngine {
             throw new BestResultNotFound(search);
         }
 
+        String searchLower = search.toLowerCase();
         Searchable bestMatch = null;
         int maxCount = 0;
 
         for (Searchable item : items) {
             String term = item.getSearchTerm();
-            int count = countOccurrences(term,search);
+            if (term == null) continue;
+            int count = countOccurrencesIgnoreCase(term,searchLower);
             if (count > maxCount) {
                 maxCount = count;
                 bestMatch = item;
@@ -27,15 +29,15 @@ public class SearchEngine {
         return bestMatch;
     }
 
-    private int countOccurrences(String text, String sub) {
-        if (text == null || sub == null || sub.isEmpty()) {
+    private int countOccurrencesIgnoreCase(String text, String subLower) {
+        if (text == null || subLower == null || subLower.isEmpty()) {
             return 0;
         }
         int count = 0;
         int index = 0;
-        while ((index = text.indexOf(sub,index)) != -1) {
+        while ((index = text.indexOf(subLower,index)) != -1) {
             count++;
-            index += sub.length();
+            index += subLower.length();
         }
         return count;
     }
