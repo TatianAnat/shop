@@ -19,16 +19,17 @@ public class ProductBasket {
         products.add(product);
     }
 
-    public  void removeProduct(Product product) {
+    public void removeProduct(Product product) {
         products.remove(product);
     }
 
     /**
      * Метод для удаления всех продуктов с заданным наименованием
+     *
      * @param name
      * @return
      */
-    public List<Product> removeProductsByName(String name){
+    public List<Product> removeProductsByName(String name) {
         List<Product> removedProducts = new ArrayList<>();
         Iterator<Product> iterator = products.iterator();
 
@@ -41,6 +42,7 @@ public class ProductBasket {
         }
         return removedProducts;
     }
+
     /**
      * Метод для получения общей стоимости корзины
      * Метод getTotalPrice() ничего не принимает и возвращает целое число — итоговую стоимость корзины.
@@ -54,6 +56,7 @@ public class ProductBasket {
         }
         return total;
     }
+
     /**
      * Метод, который печатает содержимое корзины
      * метод isEmpty() для проверки, пуст ли список.
@@ -80,9 +83,11 @@ public class ProductBasket {
             System.out.println("Специальных товаров: " + specialCount);
         }
     }
+
     /**
      * Метод проверки продукта в корзине по имени
      * products - список продуктов
+     *
      * @param name - имя продукта
      * @return - возвращает значение true (истины), если название проверяемого продукта совпадает, с тем, что есть в корзине, иначе false
      * equalsIgnoreCase - применяется для игнорирования регистра

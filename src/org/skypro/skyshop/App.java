@@ -42,7 +42,7 @@ public class App {
          * Будет поймана ошибка, так как цена не может быть 0
          */
         try {
-            SimpleProduct p2 = new SimpleProduct("Принтер", 0);
+            SimpleProduct p2 = new SimpleProduct("Принтер", 5200);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -106,7 +106,7 @@ public class App {
             System.out.println("Удалены товары из Корзины 1: ");
             for (Product p : removedNonExist) {
                 System.out.println(p);
-        }
+            }
 
         }
         System.out.println();
@@ -114,6 +114,6 @@ public class App {
         productBasket.printProductBasket();
         System.out.println("Корзина 2");
         productBasket2.printProductBasket();
-        }
-
     }
+
+}
