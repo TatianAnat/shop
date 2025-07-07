@@ -13,8 +13,9 @@ public class App {
         ProductBasket productBasket = new ProductBasket(); //корзина1
         ProductBasket productBasket2 = new ProductBasket(); //корзина2
 
-        Product monitor = new Product("Монитор",10500);
-        Product printer = new Product("Принтер",5200);
+        Product monitor = new Product("Монитор", 10500);
+        Product printer = new Product("Принтер", 5200);
+        Product keyboard = new Product("Клавиатура", 800);
 
         SearchEngine searchEngine = new SearchEngine();
 
@@ -27,6 +28,7 @@ public class App {
         productBasket.addProduct(monitor);
         productBasket.addProduct(printer);
         productBasket2.addProduct(monitor);
+        productBasket2.addProduct(keyboard);
 
         /**
          * Пример, будет поймана ошибка, т.к. в названии пустая строка
@@ -40,7 +42,7 @@ public class App {
          * Будет поймана ошибка, так как цена не может быть 0
          */
         try {
-            SimpleProduct p2 = new SimpleProduct("Принтер",0);
+            SimpleProduct p2 = new SimpleProduct("Принтер", 0);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -48,7 +50,7 @@ public class App {
          * Будет поймана ошибка, так как неверная базовая цена. Базовая цена не может быть отрицательной
          */
         try {
-            DiscountedProduct p3 = new DiscountedProduct("Монитор",-10,50);
+            DiscountedProduct p3 = new DiscountedProduct("Монитор", -10, 50);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -56,7 +58,7 @@ public class App {
          * Будет поймана ошибка, так как задан неверный процент скидки. Скидка не должна превышать 100%
          */
         try {
-            DiscountedProduct p4 = new DiscountedProduct("Клавиатура",100,150);
+            DiscountedProduct p4 = new DiscountedProduct("Клавиатура", 100, 150);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -65,7 +67,7 @@ public class App {
  */
         try {
             String query1 = "Принтер";
-            Searchable result1 = searchEngine.findBestMatch(query1,articles);
+            Searchable result1 = searchEngine.findBestMatch(query1, articles);
             System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -75,16 +77,43 @@ public class App {
          */
         try {
             String query2 = "Колонки";
-            Searchable result2 = searchEngine.findBestMatch(query2,articles);
+            Searchable result2 = searchEngine.findBestMatch(query2, articles);
             System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
 
+        System.out.println();
         System.out.println("Корзина 1");
         productBasket.printProductBasket();
         System.out.println("Корзина 2");
         productBasket2.printProductBasket();
-    }
+        System.out.println();
+        List<Product> removed = productBasket.removeProductsByName("Монитор");
+        System.out.println("Удалены товары из Корзины 1: ");
+        for (Product p : removed) {
+            System.out.println(p);
+        }
 
-}
+        /**
+         * Проверяем, если захотим удалить тот товар, которого нет, то выведется сообщение, что "Список пуст"
+         */
+        System.out.println();
+        List<Product> removedNonExist = productBasket.removeProductsByName("Коврик");
+        if (removedNonExist.isEmpty()) {
+            System.out.println("Список пуст");
+        } else {
+            System.out.println("Удалены товары из Корзины 1: ");
+            for (Product p : removedNonExist) {
+                System.out.println(p);
+        }
+
+        }
+        System.out.println();
+        System.out.println("Корзина 1");
+        productBasket.printProductBasket();
+        System.out.println("Корзина 2");
+        productBasket2.printProductBasket();
+        }
+
+    }

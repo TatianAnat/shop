@@ -5,6 +5,7 @@ import org.skypro.skyshop.product.Product;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class ProductBasket {
@@ -13,13 +14,32 @@ public class ProductBasket {
     public ProductBasket() {
         products = new ArrayList<>();
     }
-    /**
-     * Метод addProduct() добавляет продукт в корзину
-     * void ничего не возвращает
-     */
-    //
+
     public void addProduct(Product product) {
         products.add(product);
+    }
+
+    public  void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    /**
+     * Метод для удаления всех продуктов с заданным наименованием
+     * @param name
+     * @return
+     */
+    public List<Product> removeProductsByName(String name){
+        List<Product> removedProducts = new ArrayList<>();
+        Iterator<Product> iterator = products.iterator();
+
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getName().equals(name)) {
+                removedProducts.add(product);
+                iterator.remove();
+            }
+        }
+        return removedProducts;
     }
     /**
      * Метод для получения общей стоимости корзины
@@ -44,7 +64,6 @@ public class ProductBasket {
         int specialCount = 0;
         if (products.isEmpty()) {
             System.out.println("в корзине пусто");
-            return;
         } else {
             for (Product product : products) {
                 if (product != null) {
