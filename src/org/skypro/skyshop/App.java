@@ -1,6 +1,7 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.Article;
+import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.exceptions.*;
 import org.skypro.skyshop.product.Product;
 
@@ -9,12 +10,24 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
+        ProductBasket productBasket = new ProductBasket(); //корзина1
+        ProductBasket productBasket2 = new ProductBasket(); //корзина2
+
+        Product monitor = new Product("Монитор",10500);
+        Product printer = new Product("Принтер",5200);
+
         SearchEngine searchEngine = new SearchEngine();
 
         List<Searchable> articles = new ArrayList<>();
         articles.add(new Article("лазерный принтер"));
         articles.add(new Article("сенсорный монитор"));
         articles.add(new Article("беспроводная клавиатура"));
+
+
+        productBasket.addProduct(monitor);
+        productBasket.addProduct(printer);
+        productBasket2.addProduct(monitor);
+
         /**
          * Пример, будет поймана ошибка, т.к. в названии пустая строка
          */
@@ -68,5 +81,10 @@ public class App {
             System.out.println("Ошибка: " + e.getMessage());
         }
 
+        System.out.println("Корзина 1");
+        productBasket.printProductBasket();
+        System.out.println("Корзина 2");
+        productBasket2.printProductBasket();
     }
+
 }
