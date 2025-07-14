@@ -26,8 +26,14 @@ public class Product {
         return price;
     }
 
+    public boolean isSpecial() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Product{ " + name + ": " + " стоимость = " + price + '}';
     }
+
+
 }
