@@ -11,9 +11,15 @@ public class ProductBasket {
         products = new HashMap<>();
     }
 
+    /**
+     * Метод добавления продукта
+     * computeIfAbsent проверяет наличие ключа и при его отсутствии создаёт новый список продуктов
+     */
     public void addProduct(Product product) {
-        String name = product.getName();
-        products.computeIfAbsent(name, k -> new ArrayList<>()).add(product);
+        if (product == null) {
+            throw new IllegalArgumentException("продукт не может быть нулевым");
+        }
+        products.computeIfAbsent(product.getName(), k -> new ArrayList<>()).add(product);
     }
 
     public void removeProduct(Product product) {
@@ -97,6 +103,9 @@ public class ProductBasket {
      * equalsIgnoreCase - применяется для игнорирования регистра
      */
     public boolean hasProduct(String name) {
+        if (name == null || name.isBlank()) {
+            return false;
+        }
         for (List<Product> productList : products.values()) {
             for (Product product : productList) {
                 if (product.getName().equalsIgnoreCase(name)) {

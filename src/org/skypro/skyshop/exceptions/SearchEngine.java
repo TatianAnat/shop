@@ -1,8 +1,55 @@
 package org.skypro.skyshop.exceptions;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchEngine {
+    private List<Searchable> items;
+
+    public SearchEngine() {
+        items = new ArrayList<>();
+    }
+
+    public void addItem(Searchable item) {
+        items.add(item);
+    }
+
+    /**
+     * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
+     * @return - возвращает наиболее подходящий объект Searchable
+     * @throws BestResultNotFound - Метод выбрасывает проверяемое исключение собственного типа, если объект не найден
+     */
+    public Map<String, Searchable> search(String query) {
+        Map<String, Searchable> resultMap = new TreeMap<>();
+        for (Searchable item : items) {
+            if (item.getName().toLowerCase().contains(query.toLowerCase())) {
+                resultMap.put(item.getName(), item);
+            }
+        }
+        return resultMap;
+    }
+
+    /**
+     * метод подсчитывает количество неперекрывающихся вхождений подстроки.
+     * @param text
+     * @param subLower - преобразования строки в нижний регистр.
+     * @return
+     */
+    private int countOccurrencesIgnoreCase(String text, String subLower) {
+        if (text == null || subLower == null || subLower.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        int index = 0;
+        while ((index = text.indexOf(subLower,index)) != -1) {
+            count++;
+            index += subLower.length();
+        }
+        return count;
+    }
+
     /**
      * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
      * @param search - поисковая строка
@@ -36,22 +83,4 @@ public class SearchEngine {
         return bestMatch;
     }
 
-    /**
-     * метод подсчитывает количество неперекрывающихся вхождений подстроки.
-     * @param text
-     * @param subLower -  преобразования строки в нижний регистр.
-     * @return
-     */
-    private int countOccurrencesIgnoreCase(String text, String subLower) {
-        if (text == null || subLower == null || subLower.isEmpty()) {
-            return 0;
-        }
-        int count = 0;
-        int index = 0;
-        while ((index = text.indexOf(subLower,index)) != -1) {
-            count++;
-            index += subLower.length();
-        }
-        return count;
-    }
 }

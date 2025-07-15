@@ -15,6 +15,11 @@ public class Article implements Searchable {
     }
 
     @Override
+    public String getName() {
+        return "";
+    }
+
+    @Override
     public String getSearchTerm() {
         return title;
     }

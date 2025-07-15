@@ -5,6 +5,8 @@ import org.skypro.skyshop.exceptions.*;
 import org.skypro.skyshop.product.Product;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 public class App {
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket(); //корзина1
@@ -12,16 +14,30 @@ public class App {
         Product monitor = new Product("Монитор", 10500);
         Product printer = new Product("Принтер", 5200);
         Product keyboard = new Product("Клавиатура", 800);
+
         SearchEngine searchEngine = new SearchEngine();
-        List<Searchable> articles = new ArrayList<>();
-        articles.add(new Article("лазерный принтер"));
-        articles.add(new Article("сенсорный монитор"));
-        articles.add(new Article("беспроводная клавиатура"));
+        // List<Searchable> articles = new ArrayList<>();
+        searchEngine.addItem(new MySearchable("лазерный принтер"));
+        searchEngine.addItem(new MySearchable("сенсорный монитор"));
+        searchEngine.addItem(new MySearchable("беспроводная клавиатура"));
         productBasket.addProduct(monitor);
         productBasket.addProduct(printer);
         productBasket2.addProduct(monitor);
         productBasket2.addProduct(keyboard);
-        /**
+
+        Map<String, Searchable> results = searchEngine.search("принтер");
+
+        if (results.isEmpty()) {
+            System.out.println("Результаты не найдены");
+        } else {
+            System.out.println("Найденные результаты: ");
+            for (Map.Entry<String, Searchable> entry : results.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+        }
+
+
+         /**
          * Пример, будет поймана ошибка, т.к. в названии пустая строка
          */
         try {
@@ -58,7 +74,7 @@ public class App {
  */
         try {
             String query1 = "Принтер";
-            Searchable result1 = searchEngine.findBestMatch(query1, articles);
+            Searchable result1 = searchEngine.findBestMatch(query1, (List<? extends Searchable>) searchEngine);
             System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -68,7 +84,7 @@ public class App {
          */
         try {
             String query2 = "Колонки";
-            Searchable result2 = searchEngine.findBestMatch(query2, articles);
+            Searchable result2 = searchEngine.findBestMatch(query2, (List<? extends Searchable>) searchEngine);
             System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
