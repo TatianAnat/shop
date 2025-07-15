@@ -40,7 +40,7 @@ public class ProductBasket {
         List<Product> removedProducts = products.remove(name);
         return removedProducts != null ? removedProducts : new ArrayList<>();
 
-        }
+    }
 
 
     /**
@@ -75,14 +75,14 @@ public class ProductBasket {
         if (products.isEmpty() || isEmpty) {
             System.out.println("в корзине пусто");
         } else {
-            for (List<Product> productList : products.values()){
+            for (List<Product> productList : products.values()) {
                 for (Product product : productList) {
                     if (product != null) {
                         System.out.println(product);
                     }
                 }
             }
-            for (List<Product> productList : products.values()){
+            for (List<Product> productList : products.values()) {
                 for (Product product : productList) {
                     if (product != null && product.isSpecial()) {
                         specialCount++;

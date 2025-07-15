@@ -35,8 +35,5 @@ public class Product {
         return false;
     }
 
-//    public boolean isSpecial() {
-//        return ""
-//    }
 }
 

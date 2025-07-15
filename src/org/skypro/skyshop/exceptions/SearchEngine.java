@@ -16,12 +16,13 @@ public class SearchEngine {
         items.add(item);
     }
 
-    public List<Searchable> getItems(){
+    public List<Searchable> getItems() {
         return items;
     }
 
     /**
      * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
+     *
      * @return - возвращает наиболее подходящий объект Searchable
      * @throws BestResultNotFound - Метод выбрасывает проверяемое исключение собственного типа, если объект не найден
      */
@@ -37,6 +38,7 @@ public class SearchEngine {
 
     /**
      * метод подсчитывает количество неперекрывающихся вхождений подстроки.
+     *
      * @param text
      * @param subLower - преобразования строки в нижний регистр.
      * @return
@@ -47,7 +49,7 @@ public class SearchEngine {
         }
         int count = 0;
         int index = 0;
-        while ((index = text.indexOf(subLower,index)) != -1) {
+        while ((index = text.indexOf(subLower, index)) != -1) {
             count++;
             index += subLower.length();
         }
@@ -56,8 +58,9 @@ public class SearchEngine {
 
     /**
      * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
+     *
      * @param search - поисковая строка
-     * @param items - список объектов Searchable
+     * @param items  - список объектов Searchable
      * @return - возвращает наиболее подходящий объект Searchable
      * @throws BestResultNotFound - Метод выбрасывает проверяемое исключение собственного типа, если объект не найден
      */
@@ -73,7 +76,7 @@ public class SearchEngine {
         for (Searchable item : items) {
             String term = item.getSearchTerm();
             if (term == null) continue;
-            int count = countOccurrencesIgnoreCase(term,searchLower);
+            int count = countOccurrencesIgnoreCase(term, searchLower);
             if (count > maxCount) {
                 maxCount = count;
                 bestMatch = item;
