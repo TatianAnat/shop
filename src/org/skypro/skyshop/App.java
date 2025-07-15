@@ -17,7 +17,7 @@ public class App {
 
         SearchEngine searchEngine = new SearchEngine();
         // List<Searchable> articles = new ArrayList<>();
-        searchEngine.addItem(new MySearchable("лазерный принтер"));
+        searchEngine.addItem(new MySearchable("принтер лазерный"));
         searchEngine.addItem(new MySearchable("сенсорный монитор"));
         searchEngine.addItem(new MySearchable("беспроводная клавиатура"));
         productBasket.addProduct(monitor);
@@ -41,7 +41,7 @@ public class App {
          * Пример, будет поймана ошибка, т.к. в названии пустая строка
          */
         try {
-            Product p1 = new Product("");
+            Product p1 = new Product("Принтер");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -74,7 +74,7 @@ public class App {
  */
         try {
             String query1 = "Принтер";
-            Searchable result1 = searchEngine.findBestMatch(query1, (List<? extends Searchable>) searchEngine);
+            Searchable result1 = searchEngine.findBestMatch(query1, searchEngine.getItems());
             System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -84,7 +84,7 @@ public class App {
          */
         try {
             String query2 = "Колонки";
-            Searchable result2 = searchEngine.findBestMatch(query2, (List<? extends Searchable>) searchEngine);
+            Searchable result2 = searchEngine.findBestMatch(query2, searchEngine.getItems());
             System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());

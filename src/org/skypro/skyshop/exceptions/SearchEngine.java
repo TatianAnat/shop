@@ -16,6 +16,10 @@ public class SearchEngine {
         items.add(item);
     }
 
+    public List<Searchable> getItems(){
+        return items;
+    }
+
     /**
      * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
      * @return - возвращает наиболее подходящий объект Searchable
