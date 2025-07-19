@@ -1,108 +1,88 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.articles.Article;
-import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
+
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        ProductBasket productBasket = new ProductBasket(5); //корзина1 на 5 продуктов
-        ProductBasket productBasket2 = new ProductBasket(5); //корзина2 на 5 продуктов
-        SearchEngine searchEngine = new SearchEngine(10); //создаём поиск с размером 10
-/**
- * заполняем Корзину № 1
- */
-        SimpleProduct apple = new SimpleProduct("Яблоко", 50);
-        SimpleProduct bread = new SimpleProduct("Хлеб", 45);
-        DiscountedProduct milk = new DiscountedProduct("Молоко", 100, 10);
-        SimpleProduct egg = new SimpleProduct("Яйцо", 80);
-        FixPriceProduct oil = new FixPriceProduct("Масло");
-        SimpleProduct pear = new SimpleProduct("Груша", 25);
 
-        SimpleProduct cheese = new SimpleProduct("Сыр", 90);
-        DiscountedProduct washingPowder = new DiscountedProduct("Стиральный порошок", 270, 15);
+        Product monitor = new Product("Монитор", 10500);
+        Product printer = new Product("Принтер", 5200);
+        Product keyboard = new Product("Клавиатура", 800);
+
+        SearchEngine searchEngine = new SearchEngine();
+
+        productBasket.addProduct(monitor);
+        productBasket.addProduct(printer);
+        productBasket2.addProduct(monitor);
+        productBasket2.addProduct(keyboard);
 
         /**
-         * Добавляем в Корзину № 1
+         * Пример, будет поймана ошибка, т.к. в названии пустая строка
          */
-
-        productBasket.addProduct(apple);
-        productBasket.addProduct(bread);
-        productBasket.addProduct(milk);
-        productBasket.addProduct(egg);
-        productBasket.addProduct(oil);
-        productBasket.addProduct(pear);
-
-        productBasket2.addProduct(cheese);
-        productBasket2.addProduct(washingPowder);
-
-        searchEngine.add(apple);
-        searchEngine.add(bread);
-        searchEngine.add(milk);
-        searchEngine.add(pear);
-        searchEngine.add(cheese);
-
+        try {
+            Product p1 = new Product("");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        /**
+         * Будет поймана ошибка, так как цена не может быть 0
+         */
+        try {
+            SimpleProduct p2 = new SimpleProduct("Принтер", 5200);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        /**
+         * Будет поймана ошибка, так как неверная базовая цена. Базовая цена не может быть отрицательной
+         */
+        try {
+            DiscountedProduct p3 = new DiscountedProduct("Монитор", -10, 50);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        /**
+         * Будет поймана ошибка, так как задан неверный процент скидки. Скидка не должна превышать 100%
+         */
+        try {
+            DiscountedProduct p4 = new DiscountedProduct("Клавиатура", 100, 150);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 /**
- * Печатаем содержимое Корзины № 1 и общую сумму
+ * Создаём сценарий, где объект будет найден
  */
-        System.out.println("Корзина № 1");
+        try {
+            String query1 = "Принтер";
+            Searchable result1 = searchEngine.findBestMatch(query1, articles);
+            System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
+        } catch (BestResultNotFound e) {
+            System.out.println("Ошибка: " + e.getMessage());
+        }
+        /**
+         * Создаём сценарий, где объект будет не найден. Выбрасывается исключение
+         */
+        try {
+            String query2 = "Колонки";
+            Searchable result2 = searchEngine.findBestMatch(query2, articles);
+            System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
+        } catch (BestResultNotFound e) {
+            System.out.println("Ошибка: " + e.getMessage());
+        }
+
+        System.out.println();
+        System.out.println("Корзина 1");
         productBasket.printProductBasket();
-
-/**
- * Печатаем содержимое Корзины № 2 и общую сумму
- */
-        System.out.println();
-        System.out.println("Корзина № 2");
+        System.out.println("Корзина 2");
         productBasket2.printProductBasket();
-
-
         System.out.println();
-        System.out.println(("Есть ли хлеб в корзине? " + productBasket.hasProduct("хлеб")));
-        System.out.println(("Есть ли мороженое в корзине? " + productBasket.hasProduct("мороженое")));
-        System.out.println();
-        /**
-         * Создаём и добавляем название и текст статьи
-         */
-        Article article1 = new Article("Яблоки", "Яблоки отличного качества, выращенные в садах Приволжья");
-        Article article2 = new Article("Хлеб ЗОЖ", "Низкокалорийный хлеб из пророщенной пшеницы. Рекомендован людям, которые ведут здоровый образ жизни.");
-        Article article3 = new Article("Польза молока", "Оно способствует укреплению костей и зубов, улучшает работу иммунной системы и пищеварения.");
-        Article article4 = new Article("Варенье из груши", "Варенье из груш содержит органические кислоты ");
-        Article article5 = new Article("Лучший сыр", "Лучшим сыром России 2021 назван сыр Грюйер Патрис Норман от Филимоново Раздолье из Ярославской области ");
+        List<Product> removed = productBasket.removeProductsByName("Монитор");
+        System.out.println("Удалены товары из Корзины 1: ");
+        for (Product p : removed) {
+            System.out.println(p);
+        }
 
-        searchEngine.add(article1);
-        searchEngine.add(article2);
-        searchEngine.add(article3);
-        searchEngine.add(article4);
-        searchEngine.add(article5);
-        /**
-         * Поиск по запросам
-         */
-        searchAndPrint(searchEngine, "Яблоки");
-        searchAndPrint(searchEngine, "Хлеб");
-        searchAndPrint(searchEngine, "Молоко");
-        searchAndPrint(searchEngine, "ЗОЖ");
-        searchAndPrint(searchEngine, "принтер");
-        searchAndPrint(searchEngine, "сыр");
-        searchAndPrint(searchEngine, "Варенье");
-
-/**
- * очищаем Корзину № 1
- */
-        productBasket.clear();
-    }
-
-    private static void searchAndPrint(SearchEngine engine, String query) {
-        System.out.println("Результат поиска по запросу: " + query);
-        Searchable[] results = engine.search(query);
-        System.out.println(Arrays.toString(results));
-        System.out.println();
-    }
-}
