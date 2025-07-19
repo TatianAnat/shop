@@ -2,6 +2,7 @@ package org.skypro.skyshop.exceptions;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SearchEngine {
     private Set<Searchable> items = new HashSet<>();
@@ -10,9 +11,6 @@ public class SearchEngine {
         items.add(item);
     }
 
-    public Set<Searchable> getItems() {
-        return items;
-    }
     /**
      * Метод findBestMatch принимает Set.
      * @param search - поисковая строка
@@ -63,6 +61,26 @@ public class SearchEngine {
             index += subLower.length();
         }
         return count;
+    }
+
+    /**
+     * метод возвращает отсортированный набор с результатами поиска
+     * @param query
+     * @return
+     */
+    public Set<Searchable> search(String query) {
+        TreeSet<Searchable> found = new TreeSet<>();
+        String queryLower = query.toLowerCase();
+
+        for (Searchable item : items) {
+            if (item.getName().toLowerCase().contains(queryLower)) {
+                found.add(item);
+            }
+        }
+        return found;
+    }
+    public Set<Searchable> getItems() {
+        return items;
     }
 
 }

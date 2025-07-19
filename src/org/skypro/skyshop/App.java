@@ -7,16 +7,32 @@ import org.skypro.skyshop.product.Product;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class App {
     public static void main(String[] args) {
         SearchEngine searchEngine = new SearchEngine();
 
+        searchEngine.addItem(new MySearchable("Принтер Canon"));
+        searchEngine.addItem(new MySearchable("Монитор Apple"));
+        searchEngine.addItem(new MySearchable("Клавиатура Microsoft"));
+        searchEngine.addItem(new MySearchable("Принтер Epson"));
+
+        Set<Searchable> results = searchEngine.search("Принтер");
+
+        if (results.isEmpty()) {
+            System.out.println("Результаты не найдены");
+        } else {
+            for (Searchable result : results) {
+                System.out.println(result.getName());
+            }
+        }
+
         searchEngine.addItem(new Product("Принтер"));
         searchEngine.addItem(new Product("Монитор"));
         searchEngine.addItem(new Product("Клавиатура"));
         searchEngine.addItem(new Product("Принтер"));
-        System.out.println("Список товаров = " + searchEngine);
+
 
         List<Searchable> articles = new ArrayList<>();
         articles.add(new Article("лазерный принтер"));
