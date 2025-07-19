@@ -1,18 +1,11 @@
 package org.skypro.skyshop.product;
 
-public class Product {
-    private String name;
-    int price;
+import org.skypro.skyshop.search.Searchable;
 
-    public Product(String name, int price) {
-        /**
-         * Метод isBlank() используется для проверки, является ли строка пустой или нет. Пустая строка или строка, содержащая только пробелы, считается пустой.
-         */
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Название продукта не может быть пустым, состоять только из пробелов или быть null.");
-        }
+public abstract class Product implements Searchable {
+    private String name;
+
         this.name = name;
-        this.price = price;
     }
 
     public Product(String name) {
@@ -22,8 +15,16 @@ public class Product {
         return name;
     }
 
-    public int getPrice() {
-        return price;
+    public abstract int getPrice();
+
+
+    public boolean isSpecial() {
+        return false;
+    }
+
+    @Override
+    public String getSearchTerm() {
+        return name;
     }
 
     public boolean isSpecial() {
@@ -31,8 +32,8 @@ public class Product {
     }
 
     @Override
-    public String toString() {
-        return "Product{ " + name + ": " + " стоимость = " + price + '}';
+    public String getContentType() {
+        return "PRODUCT";
     }
 
 

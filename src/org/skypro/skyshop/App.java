@@ -1,29 +1,20 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.basket.Article;
-import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.exceptions.*;
-import org.skypro.skyshop.product.Product;
 
-import java.util.ArrayList;
+import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.search.SearchEngine;
+import org.skypro.skyshop.search.Searchable;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        ProductBasket productBasket = new ProductBasket(); //корзина1
-        ProductBasket productBasket2 = new ProductBasket(); //корзина2
 
         Product monitor = new Product("Монитор", 10500);
         Product printer = new Product("Принтер", 5200);
         Product keyboard = new Product("Клавиатура", 800);
 
         SearchEngine searchEngine = new SearchEngine();
-
-        List<Searchable> articles = new ArrayList<>();
-        articles.add(new Article("лазерный принтер"));
-        articles.add(new Article("сенсорный монитор"));
-        articles.add(new Article("беспроводная клавиатура"));
-
 
         productBasket.addProduct(monitor);
         productBasket.addProduct(printer);
@@ -95,25 +86,3 @@ public class App {
             System.out.println(p);
         }
 
-        /**
-         * Проверяем, если захотим удалить тот товар, которого нет, то выведется сообщение, что "Список пуст"
-         */
-        System.out.println();
-        List<Product> removedNonExist = productBasket.removeProductsByName("Коврик");
-        if (removedNonExist.isEmpty()) {
-            System.out.println("Список пуст");
-        } else {
-            System.out.println("Удалены товары из Корзины 1: ");
-            for (Product p : removedNonExist) {
-                System.out.println(p);
-            }
-
-        }
-        System.out.println();
-        System.out.println("Корзина 1");
-        productBasket.printProductBasket();
-        System.out.println("Корзина 2");
-        productBasket2.printProductBasket();
-    }
-
-}
