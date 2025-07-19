@@ -1,8 +1,6 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.exceptions.Searchable;
-
-import java.util.Objects;
+import org.skypro.skyshop.search.Searchable;
 
 public class Product implements Searchable {
     private String name;

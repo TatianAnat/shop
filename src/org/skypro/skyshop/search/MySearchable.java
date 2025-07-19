@@ -1,4 +1,4 @@
-package org.skypro.skyshop.exceptions;
+package org.skypro.skyshop.search;
 
 import java.util.Objects;
 

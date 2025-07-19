@@ -1,9 +1,6 @@
 package org.skypro.skyshop.basket;
 
-import org.skypro.skyshop.exceptions.Searchable;
-import org.skypro.skyshop.product.Product;
-
-import java.util.Objects;
+import org.skypro.skyshop.search.Searchable;
 
 public class Article implements Searchable {
     private String title;
@@ -24,7 +21,7 @@ public class Article implements Searchable {
 
     @Override
     public String getName() {
-        return "";
+        return title;
     }
 
     @Override

@@ -1,18 +1,23 @@
-package org.skypro.skyshop.exceptions;
+package org.skypro.skyshop.search;
+
+import org.skypro.skyshop.exceptions.BestResultNotFound;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class SearchEngine {
-    private Set<Searchable> items = new HashSet<>();
+    /**
+     * Используем компаратор, чтобы TreeSet корректно сортировал наши объекты
+     */
+    private Set<Searchable> items = new TreeSet<>(new SearchableComparator());
 
     public void addItem(Searchable item) {
         items.add(item);
     }
 
     /**
-     * Метод findBestMatch принимает Set.
+     * Метод findBestMatch принимает множество объектов Searchable.
      * @param search - поисковая строка
      * @param items - список объектов Searchable
      * @return - возвращает наиболее подходящий объект Searchable
@@ -46,9 +51,9 @@ public class SearchEngine {
 
     /**
      * метод подсчитывает количество неперекрывающихся вхождений подстроки.
-     * @param text
-     * @param subLower -  преобразования строки в нижний регистр.
-     * @return
+     * @param text основная строка
+     * @param subLower - преобразования строки в нижний регистр.
+     * @return количество вхождений
      */
     private int countOccurrencesIgnoreCase(String text, String subLower) {
         if (text == null || subLower == null || subLower.isEmpty()) {
@@ -65,11 +70,12 @@ public class SearchEngine {
 
     /**
      * метод возвращает отсортированный набор с результатами поиска
-     * @param query
-     * @return
+     * использует тот же компаратор, что и в поле items
+     * @param query поисковая строка
+     * @return множество найденных элементов, отсортированных SearchableComparator
      */
     public Set<Searchable> search(String query) {
-        TreeSet<Searchable> found = new TreeSet<>();
+        Set<Searchable> found = new TreeSet<>(new SearchableComparator());
         String queryLower = query.toLowerCase();
 
         for (Searchable item : items) {
@@ -77,6 +83,7 @@ public class SearchEngine {
                 found.add(item);
             }
         }
+
         return found;
     }
     public Set<Searchable> getItems() {

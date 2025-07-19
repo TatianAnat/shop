@@ -1,6 +1,4 @@
-package org.skypro.skyshop.exceptions;
-
-import java.util.Objects;
+package org.skypro.skyshop.search;
 
 public interface Searchable {
     String getSearchTerm();

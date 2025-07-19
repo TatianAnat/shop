@@ -3,9 +3,11 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.basket.Article;
 import org.skypro.skyshop.exceptions.*;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.search.MySearchable;
+import org.skypro.skyshop.search.SearchEngine;
+import org.skypro.skyshop.search.Searchable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,19 +30,19 @@ public class App {
             }
         }
 
-        searchEngine.addItem(new Product("Принтер"));
-        searchEngine.addItem(new Product("Монитор"));
-        searchEngine.addItem(new Product("Клавиатура"));
-        searchEngine.addItem(new Product("Принтер"));
+        searchEngine.addItem(new Article("лазерный принтер"));
+        searchEngine.addItem(new Article("сенсорный монитор"));
+        searchEngine.addItem(new Article("беспроводная клавиатура"));
+        searchEngine.addItem(new Article("лазерный принтер"));
 
+        System.out.println("Список товаров = " + searchEngine);
 
-        List<Searchable> articles = new ArrayList<>();
-        articles.add(new Article("лазерный принтер"));
-        articles.add(new Article("сенсорный монитор"));
-        articles.add(new Article("беспроводная клавиатура"));
-        articles.add(new Article("лазерный принтер"));
+        Set<Searchable> found = searchEngine.search("монитор");
 
-        System.out.println("Список товаров = " + articles);
+        System.out.println("Отсортированные результаты поиска: ");
+        for (Searchable item : found) {
+            System.out.println(item.getName());
+        }
         /**
          * Пример, будет поймана ошибка, т.к. в названии пустая строка
          */
