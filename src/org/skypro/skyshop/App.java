@@ -1,16 +1,17 @@
 package org.skypro.skyshop;
-import org.skypro.skyshop.basket.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.exceptions.*;
 import org.skypro.skyshop.product.Product;
-import java.util.ArrayList;
+import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.search.SearchEngine;
+import org.skypro.skyshop.search.Searchable;
 import java.util.List;
 import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
-        ProductBasket productBasket = new ProductBasket(); //корзина1
-        ProductBasket productBasket2 = new ProductBasket(); //корзина2
+
         Product monitor = new Product("Монитор", 10500);
         Product printer = new Product("Принтер", 5200);
         Product keyboard = new Product("Клавиатура", 800);
@@ -24,6 +25,7 @@ public class App {
         productBasket.addProduct(printer);
         productBasket2.addProduct(monitor);
         productBasket2.addProduct(keyboard);
+
 
         Map<String, Searchable> results = searchEngine.search("принтер");
 
@@ -74,7 +76,7 @@ public class App {
  */
         try {
             String query1 = "Принтер";
-            Searchable result1 = searchEngine.findBestMatch(query1, searchEngine.getItems());
+
             System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -84,7 +86,6 @@ public class App {
          */
         try {
             String query2 = "Колонки";
-            Searchable result2 = searchEngine.findBestMatch(query2, searchEngine.getItems());
             System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -113,12 +114,9 @@ public class App {
                 System.out.println(p);
             }
 
-        }
         System.out.println();
         System.out.println("Корзина 1");
         productBasket.printProductBasket();
         System.out.println("Корзина 2");
         productBasket2.printProductBasket();
-    }
 
-}
