@@ -5,16 +5,26 @@ import org.skypro.skyshop.exceptions.*;
 import org.skypro.skyshop.product.Product;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) {
         SearchEngine searchEngine = new SearchEngine();
 
+        searchEngine.addItem(new Product("Принтер"));
+        searchEngine.addItem(new Product("Монитор"));
+        searchEngine.addItem(new Product("Клавиатура"));
+        searchEngine.addItem(new Product("Принтер"));
+        System.out.println("Список товаров = " + searchEngine);
+
         List<Searchable> articles = new ArrayList<>();
         articles.add(new Article("лазерный принтер"));
         articles.add(new Article("сенсорный монитор"));
         articles.add(new Article("беспроводная клавиатура"));
+        articles.add(new Article("лазерный принтер"));
+
+        System.out.println("Список товаров = " + articles);
         /**
          * Пример, будет поймана ошибка, т.к. в названии пустая строка
          */
@@ -52,7 +62,7 @@ public class App {
  */
         try {
             String query1 = "Принтер";
-            Searchable result1 = searchEngine.findBestMatch(query1,articles);
+            Searchable result1 = searchEngine.findBestMatch(query1,searchEngine.getItems());
             System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -62,7 +72,7 @@ public class App {
          */
         try {
             String query2 = "Колонки";
-            Searchable result2 = searchEngine.findBestMatch(query2,articles);
+            Searchable result2 = searchEngine.findBestMatch(query2,searchEngine.getItems());
             System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());

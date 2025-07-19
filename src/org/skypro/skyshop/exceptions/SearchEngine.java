@@ -1,16 +1,26 @@
 package org.skypro.skyshop.exceptions;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SearchEngine {
+    private Set<Searchable> items = new HashSet<>();
+
+    public void addItem(Searchable item) {
+        items.add(item);
+    }
+
+    public Set<Searchable> getItems() {
+        return items;
+    }
     /**
-     * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
+     * Метод findBestMatch принимает Set.
      * @param search - поисковая строка
      * @param items - список объектов Searchable
      * @return - возвращает наиболее подходящий объект Searchable
      * @throws BestResultNotFound - Метод выбрасывает проверяемое исключение собственного типа, если объект не найден
      */
-    public Searchable findBestMatch(String search, List<? extends Searchable> items) throws BestResultNotFound {
+    public Searchable findBestMatch(String search, Set<? extends Searchable> items) throws BestResultNotFound {
         if (search == null || search.isEmpty() || items == null || items.isEmpty()) {
             throw new BestResultNotFound(search);
         }
@@ -22,7 +32,7 @@ public class SearchEngine {
         for (Searchable item : items) {
             String term = item.getSearchTerm();
             if (term == null) continue;
-            int count = countOccurrencesIgnoreCase(term,searchLower);
+            int count = countOccurrencesIgnoreCase(term.toLowerCase(),searchLower);
             if (count > maxCount) {
                 maxCount = count;
                 bestMatch = item;
@@ -54,4 +64,5 @@ public class SearchEngine {
         }
         return count;
     }
+
 }
