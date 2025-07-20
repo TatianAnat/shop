@@ -13,10 +13,6 @@ public class SearchableComparator implements Comparator<Searchable> {
         if (a1 == a2) return 0;
         if (a1 == null) return -1;
         if (a1 == null) return 1;
-//        int lenghtCompare = Integer.compare(a2.getName().length(),a1.getName().length());
-//        if (lenghtCompare != 0) {
-//            return  lenghtCompare;
-//        }
-        return  a1.getName().compareTo(a2.getName());
+        return a1.getName().compareTo(a2.getName());
     }
 }

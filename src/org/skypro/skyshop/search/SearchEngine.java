@@ -18,8 +18,9 @@ public class SearchEngine {
 
     /**
      * Метод findBestMatch принимает множество объектов Searchable.
+     *
      * @param search - поисковая строка
-     * @param items - список объектов Searchable
+     * @param items  - список объектов Searchable
      * @return - возвращает наиболее подходящий объект Searchable
      * @throws BestResultNotFound - Метод выбрасывает проверяемое исключение собственного типа, если объект не найден
      */
@@ -35,7 +36,7 @@ public class SearchEngine {
         for (Searchable item : items) {
             String term = item.getSearchTerm();
             if (term == null) continue;
-            int count = countOccurrencesIgnoreCase(term.toLowerCase(),searchLower);
+            int count = countOccurrencesIgnoreCase(term.toLowerCase(), searchLower);
             if (count > maxCount) {
                 maxCount = count;
                 bestMatch = item;
@@ -51,7 +52,8 @@ public class SearchEngine {
 
     /**
      * метод подсчитывает количество неперекрывающихся вхождений подстроки.
-     * @param text основная строка
+     *
+     * @param text     основная строка
      * @param subLower - преобразования строки в нижний регистр.
      * @return количество вхождений
      */
@@ -61,7 +63,7 @@ public class SearchEngine {
         }
         int count = 0;
         int index = 0;
-        while ((index = text.indexOf(subLower,index)) != -1) {
+        while ((index = text.indexOf(subLower, index)) != -1) {
             count++;
             index += subLower.length();
         }
@@ -71,6 +73,7 @@ public class SearchEngine {
     /**
      * метод возвращает отсортированный набор с результатами поиска
      * использует тот же компаратор, что и в поле items
+     *
      * @param query поисковая строка
      * @return множество найденных элементов, отсортированных SearchableComparator
      */
@@ -86,6 +89,7 @@ public class SearchEngine {
 
         return found;
     }
+
     public Set<Searchable> getItems() {
         return items;
     }

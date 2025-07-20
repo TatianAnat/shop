@@ -55,7 +55,7 @@ public class App {
          * Будет поймана ошибка, так как цена не может быть 0
          */
         try {
-            SimpleProduct p2 = new SimpleProduct("Принтер",0);
+            SimpleProduct p2 = new SimpleProduct("Принтер", 0);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -63,7 +63,7 @@ public class App {
          * Будет поймана ошибка, так как неверная базовая цена. Базовая цена не может быть отрицательной
          */
         try {
-            DiscountedProduct p3 = new DiscountedProduct("Монитор",-10,50);
+            DiscountedProduct p3 = new DiscountedProduct("Монитор", -10, 50);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -71,7 +71,7 @@ public class App {
          * Будет поймана ошибка, так как задан неверный процент скидки. Скидка не должна превышать 100%
          */
         try {
-            DiscountedProduct p4 = new DiscountedProduct("Клавиатура",100,150);
+            DiscountedProduct p4 = new DiscountedProduct("Клавиатура", 100, 150);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -80,7 +80,7 @@ public class App {
  */
         try {
             String query1 = "Принтер";
-            Searchable result1 = searchEngine.findBestMatch(query1,searchEngine.getItems());
+            Searchable result1 = searchEngine.findBestMatch(query1, searchEngine.getItems());
             System.out.println("Найден подходящий объект для запроса {" + query1 + "} " + result1);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -90,7 +90,7 @@ public class App {
          */
         try {
             String query2 = "Колонки";
-            Searchable result2 = searchEngine.findBestMatch(query2,searchEngine.getItems());
+            Searchable result2 = searchEngine.findBestMatch(query2, searchEngine.getItems());
             System.out.println("Найден подходящий объект для запроса {" + query2 + "} " + result2);
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());

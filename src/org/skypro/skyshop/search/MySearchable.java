@@ -15,6 +15,7 @@ public class MySearchable implements Searchable, Comparable<MySearchable> {
 
     /**
      * реализация compareTo для сортировки по имени
+     *
      * @param o the object to be compared.
      * @return
      */
