@@ -35,7 +35,7 @@ public class App {
         searchEngine.addItem(new Article("беспроводная клавиатура"));
         searchEngine.addItem(new Article("лазерный принтер"));
 
-        System.out.println("Список товаров = " + searchEngine);
+        System.out.println("\n" + searchEngine);
 
         Set<Searchable> found = searchEngine.search("монитор");
 
@@ -43,6 +43,7 @@ public class App {
         for (Searchable item : found) {
             System.out.println(item.getName());
         }
+        System.out.println();
         /**
          * Пример, будет поймана ошибка, т.к. в названии пустая строка
          */

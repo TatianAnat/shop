@@ -94,4 +94,16 @@ public class SearchEngine {
         return items;
     }
 
+    /**
+     * переопределяем метод toString
+     * @return выведем список товаров построчно (по названиям)
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Список товаров: \n");
+        for (Searchable item : items) {
+            sb.append(item.getName()).append("\n");
+        }
+        return sb.toString();
+    }
 }
