@@ -30,4 +30,8 @@ public class Product {
     public String toString() {
         return "Product{ " + name + ": " + " стоимость = " + price + '}';
     }
+
+    public boolean isSpecial() {
+        return true;
+    }
 }
