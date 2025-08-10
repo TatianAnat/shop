@@ -11,9 +11,11 @@ public class SearchEngine {
     /**
      * компаратор для сортировки Sarchable по имени
      */
-    private  final SearchableComparator comparator = new SearchableComparator();
+    private final SearchableComparator comparator = new SearchableComparator();
+
     /**
      * добавляет объект Searchable в список
+     *
      * @param item объект для добавления
      */
     public void addItem(Searchable item) {
@@ -23,6 +25,7 @@ public class SearchEngine {
     /**
      * возвращает текущий список всех объектов.
      * список возвращается, чтоб сохранить порядок и возможность использования Stream API
+     *
      * @return список объектов Searchable
      */
     public List<Searchable> getItems() {
@@ -33,25 +36,27 @@ public class SearchEngine {
      * Поиск с использованием Stream API, без циклов
      * Возвращает отсортированный набор (TreeSet) с компаратором по имени
      * если запрос пустой, возвращаем пустой набор
+     *
      * @param query поисковая строка
      * @return отсортированное множество результатов
      */
-    public Set<Searchable> search(String query)
-    {
+    public Set<Searchable> search(String query) {
         if (query == null || query.isEmpty()) {
             return new TreeSet<>(comparator);
         }
         String queryLower = query.toLowerCase();
 
-        return  items.stream()
+        return items.stream()
                 .filter(item -> item.getName() != null && item.getName().toLowerCase().contains(queryLower))
                 .collect(Collectors.toCollection(() -> new TreeSet<>(comparator)));
     }
+
     /**
      * Метод findBestMatch принимает поисковую строку и список объектов Searchable.
      * Метод поиска лучшего совпадения - возвращает объект Searchable с максимальным количеством вхождений поискового запроса
+     *
      * @param search - поисковая строка
-     * @param items - список объектов для поиска
+     * @param items  - список объектов для поиска
      * @return - возвращает наиболее подходящий объект Searchable
      * @throws BestResultNotFound - Метод выбрасывает проверяемое исключение собственного типа, если объект не найден
      */
@@ -67,7 +72,7 @@ public class SearchEngine {
         for (Searchable item : items) {
             String term = item.getSearchTerm();
             if (term == null) continue;
-            int count = countOccurrencesIgnoreCase(term.toLowerCase(),searchLower);
+            int count = countOccurrencesIgnoreCase(term.toLowerCase(), searchLower);
             if (count > maxCount) {
                 maxCount = count;
                 bestMatch = item;
@@ -83,7 +88,8 @@ public class SearchEngine {
 
     /**
      * метод подсчитывает количество неперекрывающихся вхождений подстроки (игнорируя регистр).
-     * @param text основной текст
+     *
+     * @param text     основной текст
      * @param subLower -  искомая строка(уже переведа к нижнему регистру).
      * @return количество вхождений
      */
@@ -93,7 +99,7 @@ public class SearchEngine {
         }
         int count = 0;
         int index = 0;
-        while ((index = text.indexOf(subLower,index)) != -1) {
+        while ((index = text.indexOf(subLower, index)) != -1) {
             count++;
             index += subLower.length();
         }
