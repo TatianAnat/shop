@@ -19,9 +19,10 @@ public class SearchEngine {
      * @param item объект для добавления
      */
     public void addItem(Searchable item) {
-        items.add(item);
+        if (item != null) {
+            items.add(item);
+        }
     }
-
     /**
      * возвращает текущий список всех объектов.
      * список возвращается, чтоб сохранить порядок и возможность использования Stream API
@@ -71,7 +72,9 @@ public class SearchEngine {
 
         for (Searchable item : items) {
             String term = item.getSearchTerm();
-            if (term == null) continue;
+            if (term == null) {
+                continue;
+            }
             int count = countOccurrencesIgnoreCase(term.toLowerCase(), searchLower);
             if (count > maxCount) {
                 maxCount = count;
@@ -109,16 +112,35 @@ public class SearchEngine {
     /**
      * вложенный класс компаратора для сортировки Searchable по имени
      */
-    public static class SearchableComparator implements Comparator<Searchable> {
+    public class SearchableComparator implements Comparator<Searchable> {
+
         @Override
         public int compare(Searchable o1, Searchable o2) {
-            if (o1 == o2) return 0;
-            if (o1 == null) return -1;
-            if (o2 == null) return 1;
-            if (o1.getName() == null && o2.getName() == null) return 0;
-            if (o1.getName() == null) return -1;
-            if (o2.getName() == null) return 1;
-            return o1.getName().compareTo(o2.getName());
+            if (o1 == o2) {
+                return 0;
+            }
+            if (o1 == null || o2 == null) {
+                if (o1 == null && o2 == null) {
+                    return 0;
+                }
+                if (o1 == null) {
+                    return -1;
+                }
+                return 1;
+            }
+            String name1 = o1.getName();
+            String name2 = o2.getName();
+
+            if (name1 == null || name2 == null) {
+                if (name1 == null && name2 == null) {
+                    return 0;
+                }
+                if (name1 == null) {
+                    return -1;
+                }
+                return 1;
+            }
+            return name1.compareTo(name2);
         }
     }
 

@@ -21,6 +21,6 @@ public class Article implements Searchable {
 
     @Override
     public String getName() {
-        return null;
+        return title;
     }
 }
